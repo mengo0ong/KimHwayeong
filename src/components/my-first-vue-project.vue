@@ -7,8 +7,8 @@
 </template>
 
 
-<script>
-  export default {
+<script >
+  export default ({
     data() {
       return {
         msgA: "Hello Vue 3!"
@@ -36,10 +36,8 @@
     mounted(){
 
     }
-  };
+  });
 </script>
-
-
 
 <style scoped>
 
