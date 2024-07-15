@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anonymous</title>
+</head>
+<body>
+    {% include "component/nav.html" %}
+
+    <!-- block 재사용 -->
+    {% block content %}
+    {% endblock %}
+
+    {% include "component/footer.html" %}
+</body>
+</html>

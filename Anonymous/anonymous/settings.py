@@ -58,7 +58,10 @@ ROOT_URLCONF = 'anonymous.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            # 앱 내의 템플릿 폴더와, 바깥의 폴더를 렌더링
+            'templates'
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
