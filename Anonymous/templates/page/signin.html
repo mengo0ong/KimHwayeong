@@ -17,10 +17,11 @@
         </div>
         <div class="row justify-content-center mt-3">
             <div class="col">
-                <button class="btn btn-info">로그인</button>
+                <!-- 프로젝트를 제작하다보면 url이 바뀌는 경우가 생기는데 코드로 표현하면 더욱 쉽게 유지보수가 가능 -->
+                <a href="{% url 'signup' %}"><button class="btn btn-info">회원가입</button></a>
             </div>
             <div class="col">
-                <a href="/user/signup"><button class="btn btn-info">회원가입</button></a>
+                <button class="btn btn-info">로그인</button>
             </div>
         </div>        
     </div>
