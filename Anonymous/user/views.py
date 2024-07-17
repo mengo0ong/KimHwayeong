@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 # Django rib auth (로그인, 로그아웃)
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.hashers import make_password
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.hashers import make_password, check_password
 
 # Django message rib
 from django.contrib import messages
@@ -57,3 +57,8 @@ def signup(request):
             new_user.save()
             login(request, new_user)
             return redirect('board')
+        
+def sign_out(request):
+    if request.method == "GET":
+        logout(request)
+        return redirect('board')
