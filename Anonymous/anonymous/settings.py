@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'anonymous.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'anonymous2',
+        'NAME': 'anonymous',
         'USER' : 'postgres',
         'PASSWORD' : '1234',
         'HOST' : 'localhost',
