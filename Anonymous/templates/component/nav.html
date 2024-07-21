@@ -9,7 +9,8 @@
             <a class="text-decoration-none fs-5 m-0 p-0" style="color: #999999;">{{ request.user.nickname }}</a>
             <span class="">님</span>
         </div>
-            <a class="text-decoration-none fs-5" style="font-weight: bold; color: #c60000;">글쓰기</a>
+            <a class="text-decoration-none fs-5" style="font-weight: bold; color: #c60000;"
+            href="{% url 'post_write' %}">글쓰기</a>
             <a class="text-decoration-none fs-5" style="font-weight: bold; color: black;"
             href="{% url 'signout' %}">로그아웃</a>
         {% else %}

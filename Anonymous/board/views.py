@@ -31,3 +31,7 @@ def board(request):
 
         # Java의 Controller 같은 느낌
         return render(request, 'page/index.html', context=context)
+    
+def post_write(request):
+    if request.method=="GET":
+        return render(request, "page/post_write.html")
