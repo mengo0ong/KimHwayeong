@@ -20,6 +20,9 @@ class Post(models.Model):
         # 만약 테이블 이름을 지정하지 않으면 app_model (ex: board_post)
         db_table="post"
 
+
+# FK -> Parents.children_set
+# post.comment_set
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     content = models.TextField()

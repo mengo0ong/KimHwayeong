@@ -2,51 +2,38 @@
 
 {% block content %}
     <div class="row">
+        {% for post in post_set %}
         <div class="col-6 p-2">
             <div class="card">
                 <div class="card-body">
-                    <h5>제목</h5>
-                    <p>내용</p>
-                    <p>유저닉네임<small>작성시간</small></p>
-                    <p>댓글수</p>
+                    <h5>{{ post.title }}</h5>
+                    <p>{{ post.content }}</p>
+                    <p>{{ post.user.nickname }}
+                        <!-- 필터 적용 -->
+                        <small>{{ post.reg_date|date:"Y-m-d" }}</small>
+                    </p>
+                    <p>{{ post.comment_set.all.count }}</p>
                 </div>
             </div>
         </div>
-        <div class="col-6 p-2">
-            <div class="card">
-                <div class="card-body">
-                    <h5>제목</h5>
-                    <p>내용</p>
-                    <p>유저닉네임<small>작성시간</small></p>
-                    <p>댓글수</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-6 p-2">
-            <div class="card">
-                <div class="card-body">
-                    <h5>제목</h5>
-                    <p>내용</p>
-                    <p>유저닉네임<small>작성시간</small></p>
-                    <p>댓글수</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-6 p-2">
-            <div class="card">
-                <div class="card-body">
-                    <h5>제목</h5>
-                    <p>내용</p>
-                    <p>유저닉네임<small>작성시간</small></p>
-                    <p>댓글수</p>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 
     <div class="row mt-4">
-        <div class="col-4"><a class="text-decoration-none fs-5 text-start" style="font-weight: bold; color: black;">이전글</a></div>
-        <div class="col-4"><a class="text-decoration-none fs-5 text-center" style="color: black;">3/10</a></div>
-        <div class="col-4"><a class="text-decoration-none fs-5 text-end" style="font-weight: bold; color: black;">다음글</a></div>
+        <div class="col-4">
+            {% if post_set.has_previous %}
+            <a class="text-decoration-none fs-5 text-start" style="font-weight: bold; color: black;"
+            href="{% url 'board' %}?page={{ post_set.previous_page_number }}">이전글</a>
+            {% endif %}
+        </div>
+        <div class="col-4">
+            {{ post_set.number }} / {{ post_set.paginator.num_pages}}
+        </div>
+        <div class="col-4">
+            {% if post_set.has_next %}
+            <a class="text-decoration-none fs-5 text-end" style="font-weight: bold; color: black;"
+            href="{% url 'board' %}?page={{ post_set.next_page_number }}">다음글</a>
+            {% endif %}
+        </div>
     </div>
 {% endblock %}
