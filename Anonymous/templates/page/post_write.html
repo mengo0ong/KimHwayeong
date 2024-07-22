@@ -3,15 +3,31 @@
 {% block content%}
 <div class="card">
     <div class="card-body text-end">
-        <form method="post" enctype="multipart/form-data">
+        <form id="wirte_form" method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <input class="form-control my-2" type="text" name="title" placeholder="제목">
+            <input class="form-control my-2" type="text" name="title" placeholder="제목" id="title">
             <textarea class="form-control my-2" style="height: 150px; resize: none;"
-            name="content" 
+            name="content" id="content"
             placeholder="한 번 작성한 글은 삭제할 수 없습니다. 매너를 지켜주세요."></textarea>
             <input class="form-control" type="file" name="img" accept="image/*">
-            <a class="btn btn-info my-2">글작성</a>
+            <a class="btn btn-info my-2" id="write_btn">글작성</a>
         </form>
     </div>
 </div>
+
+<script>
+    let title = document.getElementById('title');
+    let content = document.getElementById('content');
+    let write_btn = document.getElementById('write_btn');
+    let wirte_form = document.getElementById('wirte_form');
+
+    write_btn.addEventListener("click", () => {
+        if(title.value === "" || content.value === ""){
+            alert("내용을 작성해 주세요.");
+            event.preventDefault();
+        }else {
+            wirte_form.submit();
+        }
+    })
+</script>
 {% endblock %}
