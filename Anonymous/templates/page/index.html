@@ -19,15 +19,17 @@
     {% for post in post_set %}
     <div class="col-6 p-2">
         <div class="card">
-            <div class="card-body">
-                <h5>{{ post.title }}</h5>
-                <p>{{ post.content }}</p>
-                <p>{{ post.user.nickname }}
-                    <!-- 필터 적용 -->
-                    <small>{{ post.reg_date|date:"Y-m-d" }}</small>
-                </p>
-                <p>{{ post.comment_set.all.count }}</p>
-            </div>
+            <a class="text-decoration-none" style="color: black;" href="{% url 'post_detail' post.id %}">
+                <div class="card-body">
+                    <h5>{{ post.title }}</h5>
+                    <p>{{ post.content }}</p>
+                    <p>{{ post.user.nickname }}
+                        <!-- 필터 적용 -->
+                        <small>{{ post.reg_date|date:"Y-m-d" }}</small>
+                    </p>
+                    <p>{{ post.comment_set.all.count }}</p>
+                </div>
+            </a>
         </div>
     </div>
     {% endfor %}

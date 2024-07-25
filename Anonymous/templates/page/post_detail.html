@@ -1,0 +1,48 @@
+{% extends 'common/base.html' %}
+
+{% block content%}
+<!-- 게시글 -->
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col">
+                <p class="card-title" style="font-weight: bold;">제목</p>
+                <p class="card-subtitle" style="font-size: 12px;">닉네임<small>날짜</small></p>
+                <p class="card-text" style="margin-top: 10px;">내용</p>
+                <img src="">
+            </div>
+        </div>
+        
+        <!--댓글 작성-->
+        <div class="row text-end" style="margin-top: 40px;">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <form method="post">
+                            <textarea class="form-control" 
+                            placeholder="한 번 작성한 댓글은 삭제할 수 없습니다. 매너를 지켜주세요."
+                            style="resize: none; height: 100px;"></textarea>
+                            <a class="text-decoration-none fs-5 my-2"
+                            id="write_btn"
+                            style="font-weight: bold; color: black;">댓글작성</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 댓글 -->
+        <div class="row my-2">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <p>날짜</p>
+                        <p>내용</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
