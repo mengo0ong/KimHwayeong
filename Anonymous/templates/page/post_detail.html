@@ -6,10 +6,12 @@
     <div class="card-body">
         <div class="row">
             <div class="col">
-                <p class="card-title" style="font-weight: bold;">제목</p>
-                <p class="card-subtitle" style="font-size: 12px;">닉네임<small>날짜</small></p>
-                <p class="card-text" style="margin-top: 10px;">내용</p>
-                <img src="">
+                <p class="card-title" style="font-weight: bold;">{{ post.title }}</p>
+                <p class="card-subtitle" style="font-size: 12px;">{{ post.user.nickname }}<small>{{ post.reg_date|date:"Y-m-d" }}</small></p>
+                <p class="card-text" style="margin-top: 10px;">{{ post.content }}</p>
+                {% if post.img_url %}
+                    <img src="/upload/{{ post.img_url }}" style="width: 200px; height: 100px;">
+                {% endif %}
             </div>
         </div>
         
@@ -18,13 +20,15 @@
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        <form method="post">
+                        <form method="post" id="comment_form">
+                            {% csrf_token %}
                             <textarea class="form-control" 
                             placeholder="한 번 작성한 댓글은 삭제할 수 없습니다. 매너를 지켜주세요."
-                            style="resize: none; height: 100px;"></textarea>
+                            style="resize: none; height: 100px;"
+                            name="content" id="content"></textarea>
                             <a class="text-decoration-none fs-5 my-2"
                             id="write_btn"
-                            style="font-weight: bold; color: black;">댓글작성</a>
+                            style="font-weight: bold; color: gray;">댓글작성</a>
                         </form>
                     </div>
                 </div>
@@ -36,8 +40,9 @@
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        <p>날짜</p>
-                        <p>내용</p>
+                        {% for comment in post.comment_set.all %}
+                        <p>{{ comment.content }} <small>{{ comment.reg_date|date:"Y-m-d f a"}}</small></p>
+                        {% endfor%}
                     </div>
                 </div>
             </div>
@@ -45,4 +50,29 @@
 
     </div>
 </div>
+
+
+<script>
+    let content = document.getElementById("content");
+    let write_btn = document.getElementById("write_btn");
+    let comment_form = document.getElementById("comment_form");
+
+    write_btn.addEventListener("click", ()=>{
+        if(content.value){
+            comment_form.submit(); 
+        }else {
+            event.preventDefault();
+        }
+    })
+
+    content.addEventListener("keyup", () => {
+        if(content.value){
+            write_btn.style.color = "black";
+            write_btn.style.cursor = "pointer";
+        }else {
+            write_btn.style.color = "gray";
+            write_btn.style.cursor = "default";
+        }
+    })
+</script>
 {% endblock %}

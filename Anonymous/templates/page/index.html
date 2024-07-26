@@ -27,7 +27,9 @@
                         <!-- 필터 적용 -->
                         <small>{{ post.reg_date|date:"Y-m-d" }}</small>
                     </p>
-                    <p>{{ post.comment_set.all.count }}</p>
+                    <p><span class="material-symbols-outlined" style="font-size: 16px;">
+                        chat_bubble
+                    </span> {{ post.comment_set.all.count }}</p>
                 </div>
             </a>
         </div>
