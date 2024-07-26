@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <style>
+       
+    </style>
+
+
+    <div id="app">
+        <!-- @input 이벤트와 @change이벤트의 차이 (엔터를 입력해야함) -->
+        <input type="text" 
+        @change="message = $event.target.value" 
+        :value="message">
+        <div>{{ message }} </div>
+
+
+        <!-- 
+            바인드 수식어
+            v-model.lazy change 이벤트 이후 동기화
+            v-model.trim : 공백이 자동으로 트리밍
+            v-model.number : 입력이 자동으로 숫자 유형으로 변환
+        -->
+    </div>
+
+    <script>
+        const { createApp, ref } = Vue;
+
+        const App = {
+            setup() {
+                message = ref('Hello~')
+
+                return {
+                    message
+                };
+            }
+        };
+
+        const app = createApp(App).mount('#app')
+
+    </script>
+</body>
+</html>
