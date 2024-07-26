@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <style>
+        input { margin: 10px;}
+    </style>
+
+
+    <div id="app">
+        <!-- 1. input에서 엔터를 입력하면 콘솔에 Done! 이 찍힘 -->
+        <input type="text" @keydown="keydownhandler">
+
+        <!-- 2. vue 내의 키보드 이벤트-->
+        <input type="text" @keydown.enter="keydownhandler" value="vue keybord event 엔터키를 눌러주세요">
+
+        <!-- 3. chain -->
+         <input type="text" @keydown.ctrl.enter="keydownhandler" value="chaining 컨트롤키와 엔터키를 같이 눌러주세요">
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+
+        const App = {
+            setup() {
+                const keydownhandler =  (e) => {
+                    if(e.keyCode === 13){
+                        console.log('Done!');
+                    }
+                }
+
+
+                return {
+                    keydownhandler 
+                };
+            }
+        };
+
+        const app = createApp(App).mount('#app')
+
+    </script>
+</body>
+</html>
