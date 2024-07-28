@@ -60,8 +60,11 @@ def post_write(request):
             img_name = uuid.uuid4()
             # split으로 나눈 배열의 가장 마지막 값
             img_type = img.name.split('.')[-1]
-            default_storage.save(f"{img_name}.{img_type}", img)
-            img_url = f"{img_name}.{img_type}"
+            # s3에 업로드하기위해 폴더 생성
+            img_url = f"/upload/{img_name}.{img_type}"
+
+            # save(이미지 경로, 이미지 객체)
+            default_storage.save(img_url, img)
 
         # Post 객체 저장
         Post(
