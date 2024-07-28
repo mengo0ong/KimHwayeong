@@ -1,0 +1,64 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+
+<!-- 서버에서 보낸 메세지가 리스트 형식으로 옴 -->
+{% for message in messages %}
+<div class="alert alert-primary" role="alert">
+    {{ message }}
+</div>
+{% endfor %}
+<div class="card text-center">
+    <div class="card-body">
+        <form method="post" id="signin_form">
+            <!-- form태그 내부에 csrf token 삽입-->
+            {% csrf_token %}
+            <div class="row justify-content-center mt-3">
+                <label class="col-sm-2 col-form-label">아이디</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" id="username" name="username">
+                </div>
+            </div>
+            <div class="row justify-content-center mt-3">
+                <label class="col-sm-2 col-form-label">비밀번호</label>
+                <div class="col-sm-5">
+                <input type="password" class="form-control" id="password" name="password">
+                </div>
+            </div>
+        <form>
+        <div class="row justify-content-center mt-3">
+            <div class="col">
+                <!-- 프로젝트를 제작하다보면 url이 바뀌는 경우가 생기는데 코드로 표현하면 더욱 쉽게 유지보수가 가능 -->
+                <a href="{% url 'signup' %}" class="btn btn-info">회원가입</a>
+            </div>
+            <div class="col">
+                <button class="btn btn-info" id="sign_btn" >로그인</button>
+            </div>
+        </div>        
+    </div>
+</div>
+
+<script>
+    let signin_form = document.getElementById("signin_form");
+    let sign_btn = document.getElementById("sign_btn");
+    let username = document.getElementById("username");
+    let password = document.getElementById("password");
+
+    sign_btn.addEventListener("click", ()=> {
+        if(!username.value){
+            alert("아이디를 입력해주세요.")
+            // 양식 제출 방지
+            event.preventDefault();
+            return false;
+        }
+        if(!password.value){
+            alert("비밀번호를 입력해주세요.")
+            event.preventDefault();
+            return false;
+        }
+        signin_form.submit();
+    })
+
+</script>
+
+{% endblock%}

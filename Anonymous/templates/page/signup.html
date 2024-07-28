@@ -1,0 +1,85 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+{% for message in messages %}
+<div class="alert alert-primary" role="alert">
+    {{ message }}
+</div>
+{% endfor %}
+<div class="card text-center">
+    <div class="card-body">
+        <form method="post" id="singup_form">
+            {% csrf_token %}
+            <div class="row justify-content-center mt-3">
+                <label class="col-sm-2 col-form-label">아이디</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" id="username" name="username">
+                </div>
+            </div>
+            <div class="row justify-content-center mt-3">
+                <label class="col-sm-2 col-form-label">닉네임</label>
+                <div class="col-sm-5">
+                <input type="text" class="form-control" id="nickname" name="nickname">
+                </div>
+            </div>
+            <div class="row justify-content-center mt-3">
+                <label class="col-sm-2 col-form-label">비밀번호</label>
+                <div class="col-sm-5">
+                <input type="password" class="form-control" id="password" name="password">
+                </div>
+            </div>
+            <div class="row justify-content-center mt-3">
+                <label class="col-sm-2 col-form-label">비밀번호 확인</label>
+                <div class="col-sm-5">
+                <input type="password" class="form-control" id="chk_password" name="chk_password">
+                </div>
+            </div>
+        </form>
+        <div class="row justify-content-center mt-3">
+            <div class="col">
+                <button class="btn btn-info" id="signup_btn">회원가입</button>
+            </div>
+        </div>        
+    </div>
+</div>
+
+<script>
+    let singup_form = document.getElementById('signup_form');
+    let username = document.getElementById('username');
+    let nickname = document.getElementById('nickname');
+    let password = document.getElementById('password');
+    let chk_password = document.getElementById('chk_password');
+    let signup_btn = document.getElementById('signup_btn');
+
+    signup_btn.addEventListener("click", () => {
+        if(!username.value) {
+            alert('아이디를 입력해주세요.');
+            event.preventDefault();
+            return false;
+        }
+        if(!nickname.value) {
+            alert('닉네임을 입력해주세요.');
+            event.preventDefault();
+            return false;
+        }
+        if(!password.value) {
+            alert('비밀번호를 입력해주세요.');
+            event.preventDefault();
+            return false;
+        }
+        if(!chk_password.value) {
+            alert('비밀번호를 입력해주세요.');
+            event.preventDefault();
+            return false;
+        }
+        if(password.value!==chk_password.value){
+            alert('비밀번호가 서로 일치하지 않습니다.');
+            event.preventDefault();
+            return false;
+        }
+        singup_form.submit();
+    })
+
+</script>
+
+{% endblock%}
