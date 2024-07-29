@@ -19,6 +19,10 @@ from board.views import board, post_write, post_detail
 from user.views import signin, signup, sign_out
 from django.conf.urls.static import static
 from django.conf import settings
+from django.http import HttpResponse
+
+def health_check(request):
+    return HttpResponse("OK", status=200)
 
 urlpatterns = [
     path("", board, name="board"),
@@ -26,7 +30,8 @@ urlpatterns = [
     path("user/signup", signup, name="signup"),
     path("user/signout", sign_out, name="signout"),
     path("post/write", post_write, name="post_write"),
-    path("post/<int:post_id>", post_detail, name="post_detail")
+    path("post/<int:post_id>", post_detail, name="post_detail"),
+    path('healthCheck', health_check)
 
 ]
 
