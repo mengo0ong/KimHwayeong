@@ -78,21 +78,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'anonymous.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'anonymous',
-        'USER' : 'postgres',
-        'PASSWORD' : '1234',
-        'HOST' : 'localhost',
-        'PORT' : '5432'
-    }
-}
-
-
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
@@ -156,3 +141,17 @@ SECRET_KEY = env_json['SECRET_KEY']
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Database
+# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env_json['DATABASE_NAME'],
+        'USER' : env_json['DATABASE_USER_NAME'],
+        'PASSWORD' : env_json['DATABASE_PASSWORD'],
+        'HOST' : env_json['DATABASE_HOST'],
+        'PORT' : '5432'
+    }
+}
